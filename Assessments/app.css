@@ -1,0 +1,48 @@
+#container {
+    position: relative;
+}
+
+.top{
+    position: absolute;
+    top: 100px;
+    color: white;
+}
+
+.btm {
+    position: absolute; 
+    bottom: 100px;
+    color: white;
+}
+
+h1{
+    position: relative;
+    font-size: 3rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+
+}
+
+.top-text{
+    padding: 10px; 
+    margin: 5px; 
+    width: 300px;
+}
+.bottom-text{
+    padding: 10px; 
+    margin: 5px; 
+    width: 300px;
+}
+.url{
+    padding: 10px; 
+    margin: 5px; 
+    width: 300px;
+}
+
+.generate-meme{
+    padding: 10px;
+    margin: 5px; 
+    width: 150px;
+    background-color: lightsalmon;
+    border-radius: 10px;
+    color: white
+}
