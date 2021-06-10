@@ -1,0 +1,101 @@
+
+               // CONNECT 4 Project Planning //  
+
+Some useful HTML for the connect 4 project: 
+
+    We will definitley need an ID for the board itself (#gameboard)
+    Will need classes for the two game pieces and player one and two 
+
+    Each played piece could be represented as a div that will come as a result 
+    of a click event, we then need to append that div to the gameboard in the column it was
+    clicked on. 
+
+    Each new div will need to have a class of which players turn it was during each clik ('.player1 / .player2');
+
+    Just like in the memory game we will have to have the values set to null at first and then they will change to 'clicked' or 'flipped'
+    and return that value. Also once clicked we will add .classList.add(player1/player2)
+
+    Structure for the board game will have to be some sort of array, objects might prove too difficult 
+    to use; 
+
+    We will have alternating click events, first player one then player two, 
+    look into switching the event so that after each click the next click is under next players class
+
+let currentPlayer = player1; 
+
+    function playerOne ('click', playerOneTurn())
+
+    function playerOneTurn(event){
+        let currentPlayer = p1; 
+        let nextPiece = event.target; 
+        nextPiece.classList.add(currentPlayer); 
+        nextPiece.classList.add('dropped');
+        nextPiece.classList.add('player1');
+        nextPiece.className === 'player1' ? player2 : currentPlayer;
+
+    }
+
+we have alternating functions for both player one and two!! that do the same thing
+this might be able to run as one function after testing 
+
+ 
+    
+    function playerTwoTurn(event){
+        let currentPlayer = player2; 
+        let nextPiece = event.target; 
+        nextPiece.classList.add(currentPlayer); 
+        nextPiece.classList.add('dropped');
+        nextPiece.classList.add('player2');
+        nextPiece.className === 'player2' ? player1 : currentPlayer;
+
+    }
+
+
+use this terenary operator above to switch the currentPlayer from 1 to 2; 
+
+for makeBoard() : to create the Board via JS
+
+    we need to have an array of 6 arrays with 7 items 
+    let WIDTH = 7;
+    let HEIGHT = 6; 
+
+    let board = [];
+
+makeHTMLBoard() : to append the board to the DOM to make it into HTML
+
+    we need to append (board) to the DOM; 
+
+    const container = document.querySelector(body);
+    container.append(board); 
+
+placeInTable() & CSS : to create a DIV for each new piece and add the class [player1/player2]
+
+    placeInTable(){
+        const newCircle = document.createElement('div');
+        needs to go in the correct 'td' cell 
+        newCircle.classList.add('player1/player2');
+    };
+        CSS : .player1 {
+            border-radius = 50px; 
+            background-color: 
+        }
+        CSS : .player2 {
+            border-radius = 50px; 
+        }
+    
+
+color choices for pieces 
+ 
+ #ADF6b1 Granny Smith Apple #ff6663 Bittersweet #2a4494 Dark Cornflower Blue #bce7fd Uranian Blue #c492b1 Opera Mauve
+
+
+ for end game alert('PLAYER "" HAS WON THE GAME!); 
+
+ STEP ONE IS TO MAKE AN ARRAY OF ARRAYS WITH HEIGHT X WIDTH MATRIX; !!!
+
+ This worked to create the array of arrays! 
+
+ const board = new Array(6).fill(0).map(()=> new Array(4).fill(0));
+
+ console.log(board[0][0]); 
+
