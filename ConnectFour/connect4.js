@@ -64,12 +64,20 @@ function findSpotForCol(x) {
 /** placeInTable: update DOM to place piece into HTML table of board */
 
 function placeInTable(y, x) {
+    let gamePiece = document.createElement('div');
+    gamePiece.classList.add('piece')
+    gamePiece.classList.add(`player${currPlayer}`);
+    let cell = document.getElementById(`${y}-${x}`);
+    let playedPiece = cell.append(gamePiece);
+    //append to htmlboard
+
     // TODO: make a div and insert into correct table cell
 }
 
 /** endGame: announce game end */
 
 function endGame(msg) {
+    alert(`THE GAME IS OVER ${currPlayer} HAS WON!`);
     // TODO: pop up alert message
 }
 
