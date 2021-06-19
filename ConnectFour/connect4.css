@@ -18,11 +18,11 @@
   }
   
   /* TODO: make pieces red/blue,  depending on player 1/2 piece */
-  .player1{
+  .piece.player1{
     background-color: #ff6663; 
   }
   
-  .player2{
+  .piece.player2{
     background-color: #2a4494; 
   }
   /* column-top is table row of clickable areas for each column */
