@@ -17,10 +17,11 @@ let board = []; // array of rows, each row is array of cells  (board[y][x])
 
 function makeBoard() {
     // TODO: set "board" to empty HEIGHT x WIDTH matrix array
-    let board = new Array(WIDTH).fill(null).map(() => new Array(HEIGHT).fill(null));
+    board = new Array(WIDTH).fill(null).map(() => new Array(HEIGHT).fill(null));
     // for (let y = 0; y < HEIGHT; y++) {
     //   board.push(Array.from({ length: WIDTH }));
     // } couldnt figure out why this works and my code does not 
+    //by taking away the let and just having board equal to the array matrix I can set the board to the global board. 
     console.log(board[0][0]);
 }
 
