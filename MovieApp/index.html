@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="form">
+        <input type="text" min="2" id="title" placeholder="Movie Title">
+        <input type="number" min="0" max="10" id="rating" placeholder="Rating">
+        <button id="btn">Submit!</button>
+    </form>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            console.log("Let's get ready to party with jQuery!");
+        });
+        $('#btn').on('click', function () {
+            $('body').append(`<li>Title: ${$('#title').val()} Rating: ${$('#rating').val()}</li>`);
+        })
+
+        $('#btn').on('click', function () {
+            $('<button>Remove From List</button>').appendTo('li').addClass('remove-btn');
+        })
+
+        $('.remove-btn').on('click', function () {
+            $(this).remove();
+        })
+    </script>
+</body>
+
+</html>
