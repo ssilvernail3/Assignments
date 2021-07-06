@@ -1,0 +1,11 @@
+PART ONE    
+
+
+1. HTTP stands for hypertext transfer protocol
+2. URL stands for uniform resource locator
+3. DNS stands for domain name system
+4. A query string is used when you are searching for something specifically during a GET request like a certain bit of information on a website
+5. GET request is requesting information that is in the query and has no change to the server where a POST request is requesting information and posts to the body and changes the server
+6. A HTTP request usually contains the resource URL you want and headers 
+7. A HTTP response usually contains the response status codes the Content Type and many more things. 
+8. A HTTP header contains information like what date and time your computer thinks it is, any cookies the server may want to set and cache information
