@@ -1,0 +1,6 @@
+When I try to add ${categories[0].title}, ${categories[1].title}, etc. to the table it will show up as undefined in the console and will not let me access the global variable "categories"
+
+When I console.log(categories) in the global scope it will return an [] even though the 99 category groups are in the array
+
+When I console.log(categories) in the getCategory(catId) function in the console it will create a kind of cascading return on the categories, 1 then 2 then 3 etc. 
+
