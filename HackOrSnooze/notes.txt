@@ -1,0 +1,9 @@
+                                    NOTES FOR HACK OR SNOOZE PROJECT
+
+1. Read and understand what is happening in the code base provided
+2. Refresh on older topics, 'this' 'classes' 'destructuring' 'constructors' etc. 
+3. Start with first function 
+    addStory()
+    for this function we need to add the new Story to the exisiting API it should accept a user and a new Story 
+    newStory should be an instance of Story // true
+    
