@@ -32,10 +32,45 @@
         <li><a href="/posts/{{post.id}}">{{post.title}}</a></li>
         {% endfor %}
     </ul>
-    <form action="/{{user.id}}/posts/new">
-        <button type="submit" class="btn btn-info">Create New Post</button>
-    </form>
+      <form action="/{{user.id}}/posts/new">
+    <button type="submit" class="btn btn-info">Create New Post</button>
+</form>
+<form action="/tags/new">
+    <button type="submit" class="btn btn-outline-dark">Create a New Tag!</button>
+</form>
     <a href="/">Back to User List</a>
 </body>
 
 </html>
+
+<!-- <form action="/{{user.id}}/posts/new">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" name="title">
+    </div>
+    <div class="form-group">
+      <label for="content">Content</label>
+      <input type="text" class="form-control" name="content">
+    </div>
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form> -->
+
+
+  <!-- <form action="/{{user.id}}/posts/new">
+    <label for="title">Title: </label>
+    <input type="text" name="title" placeholder="Enter text for title of post!">
+    <br>
+    <label for="content">Content: </label>
+    <input type="text" name="content" placeholder="Enter post content here!">
+    <button type="submit" class="btn btn-info">Create New Post</button>
+</form> -->
+
+<!-- <label for="title">Title: </label>
+    <input type="text" name="title" placeholder="Enter text for title of post!">
+    <br>
+    <label for="content">Content: </label>
+    <input type="text" name="content" placeholder="Enter post content here!"> -->

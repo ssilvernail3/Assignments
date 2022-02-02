@@ -8,13 +8,28 @@
     <title>Add Post for {{user.first_name}} {{user.last_name}}</title>
 </head>
 <body>
+    <h1>Create a post for {{user.first_name}} {{user.last_name}}</h1>
     <form action="/{{user.id}}/posts/new" method="POST">
-        <label for="title">Title</label>
-        <input type="text" name="title">
-        <label for="content">Content</label>
-        <input type="text" name="content">
-        <button type="submit" class="btn btn-danger">Cancel</button>
-        <button type="submit" class="btn btn-success">Add</button>
-    </form>
+        <div class="form-group col-sm-5">
+          <label for="title">Title</label>
+          <input type="text" class="form-control" name="title">
+        </div>
+        <div class="form-group col-lg-7">
+          <label for="content">Content</label>
+          <input type="text" class="form-control" name="content">
+        </div>
+        {% for t in tag %}
+        <div class="form-group form-check">
+            <input class="form-check-input" type="checkbox" name="tags" value="{{t.id}}">
+            <label type="checkbox" class="form-check-label" for="{{t.name}}">{{t.name}}</label>
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <form action="/{{user.id}}">
+          <button type="submit" class="btn btn-danger">Cancel</button>
+      </form>
 </body>
 </html>
+
+ 

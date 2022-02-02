@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, redirect, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
-from models import db, connect_db, User, Post
+from models import db, connect_db, User, Post, Tag, PostTag
 
 app = Flask(__name__)
 
@@ -32,6 +32,7 @@ def create_user():
 
     return redirect(f'/{new_user.id}')
 
+#User Routes
 
 @app.route('/<int:user_id>')
 def show_user(user_id):
@@ -71,14 +72,15 @@ def delete_user(user_id):
 
     return redirect('/')
 
-#POST's Routes 
+#Post Routes 
 
 
 @app.route('/<int:user_id>/posts/new')
 def new_post(user_id):
     "Takes user to form to create a new post"
     user = User.query.get_or_404(user_id)
-    return render_template('create_post.html', user=user)
+    tag = Tag.query.all()
+    return render_template('create_post.html', user=user, tag=tag)
 
 @app.route('/<int:user_id>/posts/new', methods=['POST'])
 def add_new_post(user_id):
@@ -87,7 +89,10 @@ def add_new_post(user_id):
     title = request.form['title']
     content = request.form['content']
 
-    new_post = Post(title=title, content=content, user_id=user.id)
+    tag_ids =  [int(num) for num in request.form.getlist('tags')]
+    tags = Tag.query.filter(Tag.id.in_(tag_ids)).all()
+
+    new_post = Post(title=title, content=content, user_id=user.id, tags=tags)
     db.session.add(new_post)
     db.session.commit()
 
@@ -99,7 +104,8 @@ def show_post(posts_id):
     """Show post from a user"""
     post = Post.query.get_or_404(posts_id)
     user = User.query.all()
-    return render_template('post.html', post=post, user=user)
+    tag = Tag.query.all()
+    return render_template('post.html', post=post, user=user, tag=tag)
 
 
 
@@ -107,8 +113,9 @@ def show_post(posts_id):
 def render_edit_post(posts_id):
     """Render edit form user's post"""
     post = Post.query.get_or_404(posts_id)
+    tag = Tag.query.all()
    
-    return render_template('edit_post.html', post=post)
+    return render_template('edit_post.html', post=post, tag=tag)
 
 
 @app.route('/posts/<int:posts_id>/edit', methods=['POST'])
@@ -118,6 +125,8 @@ def edit_post(posts_id):
     post = Post.query.get_or_404(posts_id)
     post.title = request.form['title']
     post.content = request.form['content']
+    tag_ids =  [int(num) for num in request.form.getlist('tags')]
+    post.tags = Tag.query.filter(Tag.id.in_(tag_ids)).all()
 
     db.session.add(post)
     db.session.commit()
@@ -133,3 +142,62 @@ def delete_post(posts_id):
     db.session.commit()
 
     return redirect(f'/{post.user_id}')
+
+#Tag Routes
+
+@app.route('/tags')
+def show_tags():
+    """Show list of all current tags"""
+    tags = Tag.query.all()
+    return render_template('tags.html', tags=tags)
+
+@app.route('/tags/<int:tag_id>')
+def show_tag_details(tag_id):
+    """Show information about a tag"""
+    tag = Tag.query.get_or_404(tag_id)
+    posts = Post.query.all()
+    return render_template('tag_details.html', tag=tag, posts=posts)
+
+@app.route('/tags/new')
+def form_to_make_tag():
+    """Shows form to make new tag"""
+    tags = Tag.query.all()
+    return render_template('create_tag.html', tags=tags)
+
+@app.route('/tags/new', methods=['POST'])
+def create_tag():
+    """Creates new tag"""
+    name = request.form['name']
+
+    new_tag = Tag(name=name)
+    db.session.add(new_tag)
+    db.session.commit()
+
+    return redirect(f'/tags/{new_tag.id}')
+
+@app.route('/tags/<int:tag_id>/edit')
+def show_tag_edit(tag_id):
+    """Show tag edit form"""
+    tag = Tag.query.get_or_404(tag_id)
+    return render_template('tag_edit.html', tag=tag)
+
+@app.route('/tags/<int:tag_id>/edit', methods=['POST'])
+def submit_tag_edit(tag_id):
+    """Update tag edit changes"""
+    tag = Tag.query.get_or_404(tag_id)
+    tag.name = request.form['name']
+
+    db.session.add(tag)
+    db.session.commit()
+
+    return redirect(f'/tags/{tag.id}')
+
+@app.route('/tags/<int:tag_id>/delete', methods=['POST'])
+def delete_tag(tag_id):
+    """Delete tag"""
+    tag = Tag.query.get_or_404(tag_id)
+
+    db.session.delete(tag)
+    db.session.commit()
+
+    return redirect('/tags')
