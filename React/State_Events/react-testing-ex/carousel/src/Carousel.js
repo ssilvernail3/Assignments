@@ -10,6 +10,7 @@ function Carousel(props) {
   const card = props.cardData[cardIdx];
   const total = props.cardData.length;
   const goForward = () => setCardIdx(cardIdx + 1);
+  // const goBackward = () => setCardIdx(cardIdx - 1); 
 
   return (
     <div className="Carousel">
