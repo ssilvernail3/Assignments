@@ -5,12 +5,7 @@ import { v4 as uuid } from "uuid";
 
 const BoxList = () => {
     
-    const INITIAL_STATE = {
-        id: uuid(),
-        width: '20px',
-        height: '20px',
-        color: 'seafoamgreen'
-    }
+    const INITIAL_STATE = []
     const [boxes, setBoxes] = useState(INITIAL_STATE);
     
     const addBox = (newBox) => {
@@ -20,13 +15,15 @@ const BoxList = () => {
         setBoxes(boxes => boxes.filter(box => box.id !== id));
     }
 
+
+
     return (
         <div>
             
             <NewBoxForm addBox={addBox} />
-        
-            {boxes.map(box => (<Box id={box.id} width={box.width} height={box.height} color={box.color} deleteBox={deleteBox} />))}
-           
+        <div>
+            {boxes.map(box => <Box id={box.id} width={box.width} height={box.height} color={box.color} deleteBox={deleteBox} />)}
+        </div>
         </div>
     )
 }

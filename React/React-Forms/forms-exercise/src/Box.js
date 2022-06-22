@@ -1,9 +1,10 @@
 import React from "react";
 
-const Box = ({ width, height, color, deleteBox }) => {
+const Box = ({ id, width, height, color, deleteBox }) => {
+    const remove = () => deleteBox(id); 
     return (
-        <div style={{ backgroundColor: color, width: width, height: height }}>
-            <button onClick={deleteBox}>X</button>
+        <div style={{ backgroundColor: color, width: `${width}px`, height: `${height}px` }}>
+            <button onClick={remove}>X</button>
         </div>
     )
 }
